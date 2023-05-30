@@ -65,7 +65,6 @@ s.send("acknowledgement recived from the server".encode())
 # OUTPUT:
 # CLIENT OUTPUT:
 ![image](https://github.com/MohammedMuzammil13/19CS406-EX-1/assets/119291664/8d4459d2-c973-4485-addf-cf0de2d9c502)
-
 # SERVER OUTPUT:
 ![image](https://github.com/MohammedMuzammil13/19CS406-EX-1/assets/119291664/e23d9ee1-9de5-4f7b-b2fd-fe1340078049)
 
