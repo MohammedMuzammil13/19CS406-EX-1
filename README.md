@@ -1,60 +1,57 @@
 # 19CS406-EX-1 STUDY OF SOCKET PROGRAMMING WITH CLIENT-SERVER MODEL
+# DATE :06\03\2023
+# AIM :
+To implement socket programming date and time display from client to server using TCPSockets
 
-DATE :
+# ALGORITHM :
+# Server:
 
-AIM :
-To write a python program to perform stop and wait protocol
-
-
-ALGORITHM :
-1. Start the program.
-2. Get the frame size from the user
-3. To create the frame based on the user request.
-4. To send frames to server from the client side.
-5. If your frames reach the server it will send ACK signal to client
-otherwise it will sendNACK signal to client.
-6. Stop the program
-
-
-
-
-PROGRAM :
-
-CLIENT:
+1.Create a server socket and bind it to port.
+2.Listen for new connection and when a connection arrives, accept it.
+3.Send server‟s date and time to the client.
+Read client‟s IP address sent by the client.
+Display the client details.
+Repeat steps 2-5 until the server is terminated.
+Close all streams.
+Close the server socket.
+Stop.
+# Client:
+Create a client socket and connect it to the server‟s port number.
+Retrieve its own IP address using built-in function.
+Send its address to the server.
+Display the date & time sent by the server.
+Close the input and output streams.
+Close the client socket.
+Stop.
+# PROGRAM :
+# CLIENT:
+```
 import socket
 s=socket.socket()
 s.bind(('localhost',8000))
 s.listen(5)
 c,addr=s.accept()
+address={"165.165.80.80":"6A:08:AA:C2","165.165.79.1":"8A:BC:E3:FA"};
 while True:
- i=input("Enter a data: ")
- c.send(i.encode())
- ack=c.recv(1024).decode()
- if ack:
- print(ack)
- continue
- else:
- c.close()
- break
- 
-SERVER:
+ ip=c.recv(1024).decode()
+ try:
+ c.send(address[ip].encode())
+ except KeyError:
+ c.send("Not Found".encode())
+ ```
+# SERVER:
+```
 import socket
 s=socket.socket()
 s.connect(('localhost',8000))
 print(s.getsockname())
 print(s.recv(1024).decode())
 s.send("acknowledgement recived from the server".encode())
-
-
-
-
-
-OUTPUT:
-
-
-
-
-
-RESULT:
-Thus, python program to perform stop and wait protocol was successfully executed.
-
+```
+# OUTPUT:
+# CLIENT OUTPUT:
+![image](https://github.com/MohammedMuzammil13/19CS406-EX-1/assets/119291664/83a6e9da-2f29-42a6-be7e-baa96f4d5818)
+# SERVER OUTPUT:
+![image](https://github.com/MohammedMuzammil13/19CS406-EX-1/assets/119291664/bcc5007e-bf66-485e-b9bc-26946c5fd47b)
+# RESULT:
+Thus, the program to implement socket programming date and time display from client to server using TCP Sockets was successfully executed.
